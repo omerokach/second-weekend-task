@@ -184,13 +184,15 @@ let index = 0 ;
           }
           if(index === 5){
               tdClass = tasksFinishedPercentPaint(task[prop]);
-              document.write(`<td class="${tdClass}" >${task[prop]}% </td>`);
-          }else{
+              document.write(`<td class="${tdClass}" >${task[prop]}%</td>`);
+              tdClass = '';
+          }
+          else{
           document.write(`<td class="${tdClass}" >${task[prop]} </td>`);
           tdClass = '';
-          index++;
           }
-    }
+          index++;
+       }
     document.write(`</tr>`);
     index = 0;
     }
