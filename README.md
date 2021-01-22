@@ -18,15 +18,15 @@ example:
 
     {
 
-    startedAt: new Date("2021-01-20:13:00")
+    startedAt: new Date("2021-01-20:13:00"),
 
-    finishedAt: new Date("2021-01-20:19:00")
+    finishedAt: new Date("2021-01-20:19:00"),
 
-    tasksGiven: 10
+    tasksGiven: 10,
 
-    tasksFinished: 7
+    tasksFinished: 7,
 
-    topic: JavaScript
+    topic: JavaScript,
 
     }
 
