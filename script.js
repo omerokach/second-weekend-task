@@ -173,7 +173,7 @@ for(let string of header){
 }
 document.write(`</tr>`);
 
-//printing the value of the tasks
+//printing the value of the tasks final with the functions
 let tdClass;
 let index = 0 ;
     for (let task of arrTask) {
