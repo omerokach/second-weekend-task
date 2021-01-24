@@ -163,41 +163,60 @@ for(let tasks of arrTask){
     tasks.finishedAt = clearHours(tasks.finishedAt);
 }
 
-// opening the table
-document.write(`<table>`);
+// opening the table =========================HTML DOM
+// document.write(`<table>`);
+const table = document.createElement(`table`);
 
 // printing the headers
-document.write(`<tr>`);
+// document.write(`<tr>`);
+const trH = document.createElement(`tr`);
 for(let string of header){
-  document.write(`<th>${string} </th>`);  
+    const th = document.createElement(`th`);
+    th.textContent = string;
+    trH.append(th);
+    //   document.write(`<th>${string} </th>`);  
 }
-document.write(`</tr>`);
+// document.write(`</tr>`);
 
 //printing the value of the tasks final with the functions
 let tdClass;
 let index = 0 ;
-    for (let task of arrTask) {
-    document.write(`<tr>`);
-      for (const prop in task) {
-          if(index === 2){
-              tdClass = totalTimePaint(task[prop]);
-          }
-          if(index === 5){
-              tdClass = tasksFinishedPercentPaint(task[prop]);
-              document.write(`<td class="${tdClass}" >${task[prop]}%</td>`);
+for (let task of arrTask) {
+    const tr = document.createElement(`tr`);
+    const td = document.createElement(`td`);
+    // document.write(`<tr>`);
+    for (const prop in task) {
+        if(index === 2){
+            tdClass = totalTimePaint(task[prop]);
+        }
+        if(index === 5){
+            tdClass = tasksFinishedPercentPaint(task[prop]);
+            const tdText = document.createElement(`span`);
+            tr.append(td);
+            td.className = tdClass;
+            tr.append(tdText);
+            tdText.textContent = task[prop]+'%' ;
+            //   document.write(`<td class="${tdClass}" >${task[prop]}%</td>`);
               tdClass = '';
           }
           else{
-          document.write(`<td class="${tdClass}" >${task[prop]} </td>`);
-          tdClass = '';
-          }
-          index++;
-       }
-    document.write(`</tr>`);
+            const tdText = document.createElement(`span`);
+            tr.append(td);
+            td.className = tdClass;
+            tr.append(tdText);
+            tdText.textContent = task[prop] ;
+        //   document.write(`<td class="${tdClass}" >${task[prop]} </td>`);
+            tdClass = '';
+        }
+        index++;
+    }
+    // document.write(`</tr>`);
     index = 0;
+    tr.append(td);
+    table.append(tr);
     }
     
-    document.write(`</table>`);
+    // document.write(`</table>`);
 
 function totalTime(object){
     return (object.finishedAt.getHours()-object.startedAt.getHours());
