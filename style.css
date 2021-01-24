@@ -7,14 +7,17 @@ table{
 table th{
     text-align: left ;
     border-radius: 0.5em;
+    border: 1px solid rgb(172, 158, 158);
+    background-color: rgb(101, 147, 192);
 }
 table td{
     border: 1px solid rgb(172, 158, 158);
     padding: 4px 8px;
+    background-color: rgb(101, 147, 192);
    
 }
 table tr{
-    background-color: rgb(101, 147, 192);
+    /* background-color: rgb(101, 147, 192); */
    
 }
 .greenTotal{

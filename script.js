@@ -163,60 +163,6 @@ for(let tasks of arrTask){
     tasks.finishedAt = clearHours(tasks.finishedAt);
 }
 
-// opening the table =========================HTML DOM
-// document.write(`<table>`);
-const table = document.createElement(`table`);
-
-// printing the headers
-// document.write(`<tr>`);
-const trH = document.createElement(`tr`);
-for(let string of header){
-    const th = document.createElement(`th`);
-    th.textContent = string;
-    trH.append(th);
-    //   document.write(`<th>${string} </th>`);  
-}
-// document.write(`</tr>`);
-
-//printing the value of the tasks final with the functions
-let tdClass;
-let index = 0 ;
-for (let task of arrTask) {
-    const tr = document.createElement(`tr`);
-    const td = document.createElement(`td`);
-    // document.write(`<tr>`);
-    for (const prop in task) {
-        if(index === 2){
-            tdClass = totalTimePaint(task[prop]);
-        }
-        if(index === 5){
-            tdClass = tasksFinishedPercentPaint(task[prop]);
-            const tdText = document.createElement(`span`);
-            tr.append(td);
-            td.className = tdClass;
-            tr.append(tdText);
-            tdText.textContent = task[prop]+'%' ;
-            //   document.write(`<td class="${tdClass}" >${task[prop]}%</td>`);
-              tdClass = '';
-          }
-          else{
-            const tdText = document.createElement(`span`);
-            tr.append(td);
-            td.className = tdClass;
-            tr.append(tdText);
-            tdText.textContent = task[prop] ;
-        //   document.write(`<td class="${tdClass}" >${task[prop]} </td>`);
-            tdClass = '';
-        }
-        index++;
-    }
-    // document.write(`</tr>`);
-    index = 0;
-    tr.append(td);
-    table.append(tr);
-    }
-    
-    // document.write(`</table>`);
 
 function totalTime(object){
     return (object.finishedAt.getHours()-object.startedAt.getHours());
@@ -262,3 +208,61 @@ function tasksFinishedPercentPaint(finishPercent){
         return 'deepGreen';
     }
 }
+// opening the table HTML DOM=========================================================HTML DOM
+
+// document.write(`<table>`);
+let body = document.querySelector("body");
+let table = document.createElement("table");
+body.append(table);
+
+// printing the headers
+// document.write(`<tr>`);
+const trH = document.createElement("tr");
+for(let string of header){
+    const th = document.createElement("th");
+    th.textContent = string;
+    trH.append(th);
+    //   document.write(`<th>${string} </th>`);  
+}
+
+// document.write(`</tr>`);
+table.appendChild(trH);
+
+//printing the value of the tasks final with the functions
+let tdClass;
+let index = 0 ;
+for (let task of arrTask) {
+    const tr = document.createElement("tr");
+    // document.write(`<tr>`);
+    for (const prop in task) {
+        const td = document.createElement("td");
+        if(index === 2){
+            tdClass = totalTimePaint(task[prop]);
+        }
+        if(index === 5){
+            tdClass = tasksFinishedPercentPaint(task[prop]);
+            const tdText = document.createElement("span");
+            td.className = tdClass;
+            td.appendChild(tdText);
+            tdText.textContent = task[prop]+ '%' ;
+            tr.appendChild(td);
+            //   document.write(`<td class="${tdClass}" >${task[prop]}%</td>`);
+              tdClass = '';
+          }
+          else{
+            const tdText = document.createElement("span");
+            td.className = tdClass;
+            td.appendChild(tdText);
+            tdText.textContent = task[prop] ;
+        //   document.write(`<td class="${tdClass}" >${task[prop]} </td>`);
+            tr.appendChild(td);
+            tdClass = '';
+        }
+        index++;
+    }
+    // document.write(`</tr>`);
+    index = 0;
+    trH.appendChild(tr);
+}
+
+    // document.write(`</table>`);
